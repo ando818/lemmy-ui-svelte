@@ -8,7 +8,6 @@
 	export let data;
 
 	function goToPost(post) {
-		console.log('yoo??');
 		$currentPost = post;
 		goto(`/post/${post.post.id}`, {});
 	}
@@ -18,7 +17,6 @@
 	<title>Ionic Companion - Lists</title>
 </svelte:head>
 
-<IonPage>
 	<ion-content fullscreen>
 		<ion-list>
 			<ion-list-header>Posts</ion-list-header>
@@ -30,6 +28,5 @@
 			{/each}
 		</ion-list>
 	</ion-content>
-</IonPage>
 
 Ionic Companion - Lists
