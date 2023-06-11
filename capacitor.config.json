@@ -1,0 +1,9 @@
+{
+	"webDir":"build",
+	"appId":"Lemmy-UI.ionic.io",
+	"appName":"Lemmy-UI",
+	"_server": {
+	  "url": "http://192.168.1.6:5173/",
+	  "cleartext": true
+	}
+}

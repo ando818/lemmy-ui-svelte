@@ -1,0 +1,32 @@
+{
+	"name": "lemmy-ui",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev --host",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@capacitor/cli": "^5.0.5",
+		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/kit": "^1.5.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"svelte": "^3.54.0",
+		"svelte-preprocess": "^5.0.4",
+		"vite": "^4.3.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@capacitor/core": "^5.0.5",
+		"@ionic/core": "^7.0.3",
+		"ionic-svelte": "^0.5.81",
+		"ionicons": "^7.1.2"
+	}
+}
