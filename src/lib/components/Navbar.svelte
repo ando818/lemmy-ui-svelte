@@ -1,8 +1,9 @@
 <script>
-  	import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
+	import { user } from '$lib/store';
 
 	function goToPage(page) {
-    console.log("fkoako")
+		console.log('fkoako');
 		goto(page, {});
 	}
 </script>
@@ -16,8 +17,7 @@
 					class="logo ion-text-left"
 				/>
 			</ion-col>
-      <div class='site-name'>
-				Lemmy</div>
+			<div class="site-name">Lemmy</div>
 			<ion-col size="4">
 				<div class="navbar ion-text-center">
 					<ion-button
@@ -46,14 +46,16 @@
 				>
 					Login
 				</ion-button>
-				<ion-button
-					fill="clear"
-					routerLinkActive="active-link"
-					class="link"
-					on:click={() => goToPage('/signup')}
-				>
-					Sign up
-				</ion-button>
+				{#if !$user}
+					<ion-button
+						fill="clear"
+						routerLinkActive="active-link"
+						class="link"
+						on:click={() => goToPage('/signup')}
+					>
+						Sign up
+					</ion-button>
+				{/if}
 			</ion-col>
 		</ion-row>
 	</ion-toolbar>
@@ -67,7 +69,7 @@
 	.link {
 		font-size: 14px;
 	}
-  .site-name {
-    font-weight: 600;
-  }
+	.site-name {
+		font-weight: 600;
+	}
 </style>

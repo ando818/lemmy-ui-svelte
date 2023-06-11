@@ -26,3 +26,12 @@ currentPost.subscribe((u) => {
 	}
 });
 
+export const user = writable(
+	getSafetyParsedJsonFromLocalStorage('user', false)
+);
+user.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('user', JSON.stringify(u));
+	}
+});
+

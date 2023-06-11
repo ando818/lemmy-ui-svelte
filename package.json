@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@capacitor/core": "^5.0.5",
 		"@ionic/core": "^7.0.3",
+		"carbon-components-svelte": "^0.75.1",
 		"ionic-svelte": "^0.5.81",
 		"ionicons": "^7.1.2",
 		"svelte-ionicons": "^0.5.6",

@@ -2,6 +2,8 @@
 	import { setupIonicBase } from 'ionic-svelte';
 	import Navbar from '$lib/components/Navbar.svelte'
 	import { IonPage } from 'ionic-svelte';
+	import "carbon-components-svelte/css/white.css";
+
 
 	/* Call Ionic's setup routine */
 	setupIonicBase();
