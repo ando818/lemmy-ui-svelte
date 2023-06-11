@@ -6,9 +6,6 @@ export const load = async ({ cookies, params }) => {
     console.log("json", json)
 
     return {
-        /**
-         * The player's guessed words so far
-         */
         comments: json.comments
     };
 };

@@ -3,8 +3,7 @@
 	import { goto } from '$app/navigation';
 
 	import Post from '$lib/components/Post.svelte';
-	import {currentPost} from '$lib/store'
-
+	import { currentPost } from '$lib/store';
 
 	export let data;
 

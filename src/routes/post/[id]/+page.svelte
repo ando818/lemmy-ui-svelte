@@ -61,7 +61,7 @@
 				</div>
 			</div>
 
-			<div id="right-bar">hi</div>
+			<div id="right-bar"></div>
 		</div>
 	</ion-content>
 </IonPage>

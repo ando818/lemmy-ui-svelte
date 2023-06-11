@@ -1,6 +1,6 @@
 <script>
 	import { setupIonicBase } from 'ionic-svelte';
-
+	import Navbar from '$lib/components/Navbar.svelte'
 	/* Call Ionic's setup routine */
 	setupIonicBase();
 
@@ -44,5 +44,6 @@
 </script>
 
 <ion-app>
+	<Navbar/>
 	<slot />
 </ion-app>
