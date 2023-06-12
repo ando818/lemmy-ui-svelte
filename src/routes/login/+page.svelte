@@ -12,13 +12,13 @@
 			method: 'POST',
 			body: JSON.stringify({
 				usernameOrEmail,
-				password,
+				password
 			})
 		});
 		let json = await resp.json();
 		if (json.success) {
 			$user = json.user;
-			goToPage("/")
+			goToPage('/');
 		}
 	}
 	function goToPage(page) {
