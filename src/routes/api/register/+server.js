@@ -1,4 +1,4 @@
-import {json} from '@sveltejs/kit'
+import { json } from '@sveltejs/kit'
 export async function POST({ cookies, request }) {
 
     let data = await request.json();
@@ -21,6 +21,7 @@ export async function POST({ cookies, request }) {
         let json = await resp.json();
         cookies.set("jwt", json.jwt)
     }
+    
     return json({
         success: true,
         user: data

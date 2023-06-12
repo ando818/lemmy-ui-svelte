@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/store';
+	import { OverflowMenu, OverflowMenuItem } from 'carbon-components-svelte';
 
 	function goToPage(page) {
 		console.log('fkoako');
@@ -37,16 +38,17 @@
 					</ion-button>
 				</div>
 			</ion-col>
+
 			<ion-col size="2" offset="4">
-				<ion-button
-					fill="clear"
-					routerLinkActive="active-link"
-					class="link"
-					on:click={() => goToPage('/login')}
-				>
-					Login
-				</ion-button>
 				{#if !$user}
+					<ion-button
+						fill="clear"
+						routerLinkActive="active-link"
+						class="link"
+						on:click={() => goToPage('/login')}
+					>
+						Login
+					</ion-button>
 					<ion-button
 						fill="clear"
 						routerLinkActive="active-link"
@@ -54,6 +56,16 @@
 						on:click={() => goToPage('/signup')}
 					>
 						Sign up
+					</ion-button>
+				{:else}
+				<ion-button></ion-button>
+				<ion-button
+						fill="clear"
+						routerLinkActive="active-link"
+						class="link"
+						on:click={() => goToPage('/signup')}
+					>
+						Log out
 					</ion-button>
 				{/if}
 			</ion-col>
