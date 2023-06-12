@@ -7,6 +7,10 @@
 		console.log('fkoako');
 		goto(page, {});
 	}
+
+	function logout() {
+		$user = null;
+	}
 </script>
 
 <ion-header mode="ios">
@@ -16,6 +20,7 @@
 				<img
 					src="https://retarded.dev/pictrs/image/c9407c0c-de4b-4b25-8e45-3b3a946bef76.png?format=webp&thumbnail=96"
 					class="logo ion-text-left"
+					on:click={() => goToPage("/")}
 				/>
 			</ion-col>
 			<div class="site-name">Lemmy</div>
@@ -58,12 +63,12 @@
 						Sign up
 					</ion-button>
 				{:else}
-				<ion-button></ion-button>
+				{$user.username}
 				<ion-button
 						fill="clear"
 						routerLinkActive="active-link"
 						class="link"
-						on:click={() => goToPage('/signup')}
+						on:click={logout}
 					>
 						Log out
 					</ion-button>
