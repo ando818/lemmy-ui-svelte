@@ -10,6 +10,7 @@
 	let passwordVerify;
 
 	async function signup() {
+		console.log("huhu")
 		let resp = await fetch('/api/register', {
 			method: 'POST',
 			body: JSON.stringify({
