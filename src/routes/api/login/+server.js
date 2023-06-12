@@ -9,7 +9,7 @@ export async function POST({ cookies, request }) {
         password: data.password,
     }));
 
-    let resp = await fetch("https://retarded.dev/api/v3/user/login", {
+    let resp = await fetch("/api/v3/user/login", {
         method: "POST",
         headers: {
             "content-type": "application/json",
