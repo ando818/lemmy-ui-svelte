@@ -11,7 +11,7 @@
 
 	async function signup() {
 		console.log("huhu")
-		let resp = await fetch('/apis/register', {
+		let resp = await fetch('/apus/register', {
 			method: 'POST',
 			body: JSON.stringify({
 				username,
