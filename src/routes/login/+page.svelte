@@ -8,7 +8,7 @@
 	let password;
 
 	async function login() {
-		let resp = await fetch('/api/login', {
+		let resp = await fetch('/apis/login', {
 			method: 'POST',
 			body: JSON.stringify({
 				usernameOrEmail,
