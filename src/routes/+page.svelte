@@ -17,7 +17,7 @@
 	<title>Ionic Companion - Lists</title>
 </svelte:head>
 
-	<ion-content fullscreen>
+		
 		<ion-list>
 			<ion-list-header>Posts</ion-list-header>
 
@@ -27,6 +27,5 @@
 				</div>
 			{/each}
 		</ion-list>
-	</ion-content>
 
 Ionic Companion - Lists

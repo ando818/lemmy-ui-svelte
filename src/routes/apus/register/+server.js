@@ -4,7 +4,7 @@ export async function POST({ cookies, request }) {
     let data = await request.json();
     console.log("da", data)
 
-    let resp = await fetch("/api/v3/user/register", {
+    let resp = await fetch("https://retarded.dev/api/v3/user/register", {
         method: "POST",
         headers: {
             "content-type": "application/json",

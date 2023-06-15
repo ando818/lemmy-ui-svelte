@@ -1,9 +1,8 @@
 <script>
 	import { setupIonicBase } from 'ionic-svelte';
-	import Navbar from '$lib/components/Navbar.svelte'
+	import Navbar from '$lib/components/Navbar.svelte';
 	import { IonPage } from 'ionic-svelte';
-	import "carbon-components-svelte/css/white.css";
-
+	import 'carbon-components-svelte/css/white.css';
 
 	/* Call Ionic's setup routine */
 	setupIonicBase();
@@ -48,8 +47,10 @@
 </script>
 
 <ion-app>
-	<IonPage>
-	<Navbar/>
-	<slot />
-</IonPage>
+	<ion-content>
+		<IonPage>
+			<Navbar />
+			<slot />
+		</IonPage>
+	</ion-content>
 </ion-app>

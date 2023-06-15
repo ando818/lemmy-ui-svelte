@@ -42,8 +42,6 @@
 	});
 </script>
 
-<IonPage>
-	<ion-content fullscreen>
 		<div id="container">
 			<div id="main">
 				<Post bind:post={$currentPost} />
@@ -63,15 +61,14 @@
 
 			<div id="right-bar"></div>
 		</div>
-	</ion-content>
-</IonPage>
+
 
 <style>
 	#container {
 		display: flex;
 	}
 	#main {
-		width: 50%;
+		width: 60%;
 		margin: auto;
 	}
 	#right-bar {

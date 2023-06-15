@@ -16,8 +16,11 @@
 			})
 		});
 		let json = await resp.json();
+
+		console.log("json",json)
 		if (json.success) {
 			$user = json.user;
+			$user.username = usernameOrEmail
 			goToPage('/');
 		}
 	}

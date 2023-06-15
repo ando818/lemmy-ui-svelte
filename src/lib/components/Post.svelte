@@ -21,8 +21,7 @@
 </script>
 
 <ion-item>
-	<div style="margin-right:10px;">
-	</div>
+	<div style="margin-right:10px;" />
 	{#if parsePostType(post) == 'video'}
 		<ion-img src={post.post.thumbnail_url} style="width:100px; height: 100px; padding-right:10px" />
 	{:else if parsePostType(post) == 'image'}
