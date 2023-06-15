@@ -14,7 +14,7 @@
 </script>
 
 <svelte:head>
-	<title>Ionic Companion - Lists</title>
+	<title>Lemmy</title>
 </svelte:head>
 
 		
@@ -28,4 +28,3 @@
 			{/each}
 		</ion-list>
 
-Ionic Companion - Lists

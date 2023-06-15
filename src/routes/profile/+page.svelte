@@ -20,11 +20,9 @@
 	onMount(() => {
 		data.person.comments.forEach(comment => {
 			comment.path = "0";
-			console.log(comment)
 			commentTree.children.push({
 				comment: comment,
 			children: []});
-			console.log(commentTree)
 			commentTree = commentTree;
 
 		})

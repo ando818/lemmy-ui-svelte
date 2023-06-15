@@ -1,5 +1,7 @@
 <script>
 	import { comment } from 'svelte/internal';
+	import { client } from '$lib/lemmyclient.js';
+	import {marked} from 'marked';
 	import {
 		AddCircleOutline,
 		RemoveCircleOutline,
@@ -12,7 +14,9 @@
 	export let commentTree;
 	export let level;
 
-	console.log(commentTree);
+	let markdown;
+	
+	console.log(marked("hello"));
 
 	function collapse(tree) {
 		tree.collapsed = !tree.collapsed;
@@ -20,6 +24,22 @@
 		console.log('yoo');
 		commentTree = commentTree;
 	}
+
+	async function likeComment(comment) {
+		let resp = await fetch('/apus/comment/like', {
+			method: 'POST',
+			body: JSON.stringify({
+				commentId: comment.comment.id,
+				score: 1
+			})
+		});
+	}
+
+	async function editComment(comment) {
+		commentInEdit = comment;
+	}
+
+	let commentInEdit;
 </script>
 
 <div class={level > 0 ? 'indent' : ''}>
@@ -38,18 +58,30 @@
 								{/if}
 							</div>
 						</div>
-						<div class="comment-content">
-							{tree.comment.comment.content}
-						</div>
-						<div class="comment-bar">
-							<LinkOutline size="16" class="icon" />
-							<ArrowUpOutline size="16" class="icon" />
-							<ArrowDownOutline size="16" class="icon" />
-							<StarOutline size="16" class="icon" />
-							<CreateOutline size="16" class="icon" />
-						</div>
-					</div>
-				</ion-item>
+						{#if commentInEdit && tree.comment.comment.id == commentInEdit.comment.id}
+							<div class="comment-content-edit">
+								<textarea class="edit-textarea">{tree.comment.comment.content}</textarea>
+								<div>
+									<ion-button>Save</ion-button> 
+									<ion-button>Cancel</ion-button> 
+								</div>
+							</div>
+						{:else}
+							<div class="comment-content">
+								{@html marked(tree.comment.comment.content)}
+							</div>
+							<div class="comment-bar">
+								<div on:click={() => likeComment(tree.comment)}>
+									<LinkOutline size="16" class="icon" />
+								</div>
+								<ArrowUpOutline size="16" class="icon" on:click={() => likeComment(tree.comment)} />
+								<ArrowDownOutline size="16" class="icon" />
+								<StarOutline size="16" class="icon" />
+								<CreateOutline size="16" class="icon" on:click={() => editComment(tree.comment)} />
+							</div>
+						{/if}
+					</div></ion-item
+				>
 				{#if !tree.collapsed && tree.children.length > 0}
 					<svelte:self commentTree={tree} level={level + 1} />
 				{/if}
@@ -72,6 +104,7 @@
 	}
 	.comment {
 		margin: 10px;
+		width: 100%;
 	}
 	.comment-top {
 		margin-bottom: 5px;
@@ -92,5 +125,12 @@
 	}
 	.icon {
 		padding-right: 10px;
+	}
+
+	.comment-content-edit {
+		width: 100%;
+	}
+	.edit-textarea {
+		width: 100%;
 	}
 </style>
