@@ -3,7 +3,7 @@
 	"appId":"Lemmy-UI.ionic.io",
 	"appName":"Lemmy-UI",
 	"_server": {
-	  "url": "http://retarded.dev/",
+	  "url": "https://retarded.dev/",
 	  "cleartext": true
 	}
 }
