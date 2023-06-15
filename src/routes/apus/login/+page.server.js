@@ -4,6 +4,5 @@ export const load = async ({ cookies }) => {
 		/**
 		 * The player's guessed words so far
 		 */
-		cookies
 	};
 };
