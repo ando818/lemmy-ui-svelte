@@ -17,9 +17,9 @@
 <svelte:head>
 	<style>
 		.logo {
-			width: 50px;
-			height: 50px;
-			margin-left: 30px;
+			width: 10vw;
+			
+			margin-left: 4vw;
 		}
 		.link {
 			font-size: 14px;
@@ -62,6 +62,15 @@
 			margin-left:30px;
 
 		}
+
+		@media (max-width: 767px) {
+        .hamburger {
+			margin-left:30vw;
+		}
+		h4 {
+			font-size:18px;
+		}
+	}
 	</style>
 </svelte:head>
 

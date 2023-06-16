@@ -32,7 +32,7 @@
 	}
 </script>
 
-<ion-item>
+<ion-item class='item'>
 	<div style="margin-right:10px;" />
 	{#if parsePostType(post) == 'video'}
 		<ion-img src={post.post.thumbnail_url} style="width:10vw; height: 10vh; padding-right:10px" />
@@ -58,7 +58,7 @@
 				}
 			}}
 		>
-			<h2>{post.post.name}</h2>
+			<h2 class='post-title'>{post.post.name}</h2>
 		</div>
 		<h4><a>@{getDisplayName(post)}</a> to {post.community.title}</h4>
 		<div on:click={() => goToPost(post)}>
@@ -69,6 +69,14 @@
 </ion-item>
 
 <style>
+	.item {
+		height: fit-content;
+	}
+
+	.post-title {
+		word-wrap: break-word;
+		white-space: normal;
+	}
 	@media (max-width: 767px) {
 		.mobile h2 {
 			font-size: 12px;
