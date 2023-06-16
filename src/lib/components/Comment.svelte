@@ -95,7 +95,7 @@
 								<ArrowDownOutline size="16" class="icon" />
 								<StarOutline size="16" class="icon" />
 
-								{#if tree.comment.creator.name == $user.username}
+								{#if $user && tree.comment.creator.name == $user.username}
 									<CreateOutline
 										size="16"
 										class="icon"
