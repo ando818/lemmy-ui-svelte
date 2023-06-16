@@ -28,7 +28,15 @@
 		</ion-list>
 
 	</div>
-	<div class='side'>
+	<div class='side hidden-mobile'>
+
+		<div>
+			<ion-searchbar placeholder="Search"></ion-searchbar>
+
+			<ion-button>Create Post</ion-button>
+			<ion-button >Create Community</ion-button>
+
+		</div>
 	</div>
 </div>
 
@@ -38,13 +46,21 @@
 	}
 	.posts {
 		position: relative;
-		width: 90%;
+		width: 80%;
+	}
+	@media (max-width: 767px) {
+        .hidden-mobile {
+          display: none;
+        }
+		.posts {
+			width:100%;
+		}
 	}
 	.side {
 		position: absolute;
 		top:0;
 		right:0;
 		height: 100vh;
-		width:10%
+		width:20%
 	}
 </style>

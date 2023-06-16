@@ -35,19 +35,20 @@
 <ion-item>
 	<div style="margin-right:10px;" />
 	{#if parsePostType(post) == 'video'}
-		<ion-img src={post.post.thumbnail_url} style="width:100px; height: 100px; padding-right:10px" />
+		<ion-img src={post.post.thumbnail_url} style="width:10vw; height: 10vh; padding-right:10px" />
 	{:else if parsePostType(post) == 'image'}
 		<a href={post.post.url}
-			><ion-img src={post.post.url} style="width:100px; height: 100px; padding-right:10px" /></a
+			><ion-img src={post.post.url} style="width:10vw; height: 10vh; padding-right:10px" /></a
 		>
 	{:else}
 		<div
-			style="width: 100px; height: 100px; display:flex; align-items: center; padding-right: 10px; justify-content: center"
+			style="width: 10vw; height: 10vh; display:flex; align-items: center; padding-right: 10px; justify-content: center"
 		>
 			<Chatbox size="25" />
 		</div>
 	{/if}
 	<ion-label>
+		<div class="post mobile">
 		<div
 			on:click={() => {
 				if (post.post.url) {
@@ -60,8 +61,23 @@
 			<h2>{post.post.name}</h2>
 		</div>
 		<h4><a>@{getDisplayName(post)}</a> to {post.community.title}</h4>
-		<div on:click={() => 					goToPost(post)		}>
-		<a><h3>{post.counts.comments} comments</h3></a>
+		<div on:click={() => goToPost(post)}>
+			<a><h3>{post.counts.comments} comments</h3></a>
 		</div>
+	</div>
 	</ion-label>
 </ion-item>
+
+<style>
+	@media (max-width: 767px) {
+		.mobile h2 {
+			font-size: 12px;
+		}
+		.mobile h3 {
+			font-size: 10px;
+		}
+		.mobile h4 {
+			font-size: 10px;
+		}
+	}
+</style>
