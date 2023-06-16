@@ -88,7 +88,7 @@
 			width:20vw;
 		}
 		.mobile h2 {
-			font-size: 12px;
+			font-size: 14px;
 		}
 		.mobile h3 {
 			font-size: 10px;
