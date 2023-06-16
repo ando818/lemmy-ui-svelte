@@ -22,9 +22,7 @@
 			<ion-list-header>Posts</ion-list-header>
 
 			{#each data.posts as post}
-				<div on:click={() => goToPost(post)}>
 					<Post bind:post />
-				</div>
 			{/each}
 		</ion-list>
 

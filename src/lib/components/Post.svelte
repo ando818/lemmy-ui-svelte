@@ -1,7 +1,9 @@
 <script>
 	export let post;
-	import { Chatbox } from 'svelte-ionicons';
+	import { goto } from '$app/navigation';
 
+	import { Chatbox } from 'svelte-ionicons';
+	import { currentPost } from '$lib/store.js';
 	function parsePostType(post) {
 		if (post.post.url?.includes('.jpg')) {
 			return 'image';
@@ -18,6 +20,16 @@
 			return post.creator.name;
 		}
 	}
+
+	function goToPost(post) {
+		console.log('yo');
+		$currentPost = post;
+		goto(`/post/${post.post.id}`, {});
+	}
+
+	function goTo(url) {
+		goto(url, {});
+	}
 </script>
 
 <ion-item>
@@ -25,7 +37,9 @@
 	{#if parsePostType(post) == 'video'}
 		<ion-img src={post.post.thumbnail_url} style="width:100px; height: 100px; padding-right:10px" />
 	{:else if parsePostType(post) == 'image'}
-		<ion-img src={post.post.url} style="width:100px; height: 100px; padding-right:10px" />
+		<a href={post.post.url}
+			><ion-img src={post.post.url} style="width:100px; height: 100px; padding-right:10px" /></a
+		>
 	{:else}
 		<div
 			style="width: 100px; height: 100px; display:flex; align-items: center; padding-right: 10px; justify-content: center"
@@ -34,8 +48,20 @@
 		</div>
 	{/if}
 	<ion-label>
-		<h2>{post.post.name}</h2>
-		<h4><a>{getDisplayName(post)}</a> to {post.community.title}</h4>
-		<h3>{post.counts.comments} comments</h3>
+		<div
+			on:click={() => {
+				if (post.post.url) {
+					goTo(post.post.url);
+				} else {
+					goToPost(post);
+				}
+			}}
+		>
+			<h2>{post.post.name}</h2>
+		</div>
+		<h4><a>@{getDisplayName(post)}</a> to {post.community.title}</h4>
+		<div on:click={() => 					goToPost(post)		}>
+		<a><h3>{post.counts.comments} comments</h3></a>
+		</div>
 	</ion-label>
 </ion-item>

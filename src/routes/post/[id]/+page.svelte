@@ -3,9 +3,11 @@
 	import { currentPost } from '$lib/store';
 	import { IonPage } from 'ionic-svelte';
 	import { onMount } from 'svelte';
-	import Comment  from '$lib/components/Comment.svelte'
+	import Comment from '$lib/components/Comment.svelte';
 	export let data;
 
+
+	let textArea;
 
 	let commentTree = {
 		id: 0,
@@ -36,32 +38,32 @@
 		}
 	}
 	onMount(() => {
+		textArea.innerHTML = $currentPost.post.body;
 		convertToTree(data.comments);
 		commentTree = commentTree;
-		console.log(commentTree)
+		console.log(commentTree);
 	});
 </script>
 
-		<div id="container">
-			<div id="main">
-				<Post bind:post={$currentPost} />
+<div id="container">
+	<div id="main">
+		<Post bind:post={$currentPost} />
 
-				<div id="post">
-					<ion-textarea
-						class="post-text"
-						readonly="true"
-						disabled="true"
-						placeholder={$currentPost.post.body}
-					/>
-				</div>
-				<div id="comments">
-					<Comment bind:commentTree={commentTree} level={0}></Comment>
-				</div>
-			</div>
-
-			<div id="right-bar"></div>
+		<div id="post">
+			<ion-textarea
+				bind:this={textArea}
+				class="post-text"
+				readonly="true"
+				disabled="true"
+			/>
 		</div>
+		<div id="comments">
+			<Comment bind:commentTree level={0} />
+		</div>
+	</div>
 
+	<div id="right-bar" />
+</div>
 
 <style>
 	#container {
@@ -75,7 +77,8 @@
 		width: 20%;
 	}
 	.post-text {
-		margin-left: 5px;
+		padding: 10px;
+		opacity:1
 	}
 
 	#post {
