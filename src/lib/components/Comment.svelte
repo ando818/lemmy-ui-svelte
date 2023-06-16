@@ -2,6 +2,7 @@
 	import { comment } from 'svelte/internal';
 	import { client } from '$lib/lemmyclient.js';
 	import {marked} from 'marked';
+	import { user } from '$lib/store.js';
 	import {
 		AddCircleOutline,
 		RemoveCircleOutline,
@@ -95,7 +96,10 @@
 								<ArrowUpOutline size="16" class="icon" on:click={() => likeComment(tree.comment)} />
 								<ArrowDownOutline size="16" class="icon" />
 								<StarOutline size="16" class="icon" />
+
+								{#if tree.comment.creator.name == $user.username}
 								<CreateOutline size="16" class="icon" on:click={() => editComment(tree.comment)} />
+									{/if}
 							</div>
 						{/if}
 					</div></ion-item

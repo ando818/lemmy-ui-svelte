@@ -17,12 +17,34 @@
 	<title>Lemmy</title>
 </svelte:head>
 
-		
+<div class='main'>
+	<div class='posts'>
 		<ion-list>
 			<ion-list-header>Posts</ion-list-header>
 
 			{#each data.posts as post}
-					<Post bind:post />
+				<Post bind:post />
 			{/each}
 		</ion-list>
 
+	</div>
+	<div class='side'>
+	</div>
+</div>
+
+<style>
+	.main {
+		position: relative;
+	}
+	.posts {
+		position: relative;
+		width: 90%;
+	}
+	.side {
+		position: absolute;
+		top:0;
+		right:0;
+		height: 100vh;
+		width:10%
+	}
+</style>

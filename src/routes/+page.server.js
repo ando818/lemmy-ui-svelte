@@ -1,6 +1,6 @@
 export const load = async ({ cookies }) => {
 
-    let resp = await fetch("https://retarded.dev/api/v3/community/list")
+    let resp = await fetch("https://lemmy.world/api/v3/community/list")
     let json = await resp.json()
     console.log(json)
     
@@ -15,7 +15,7 @@ export const load = async ({ cookies }) => {
 };
 
 async function getPosts() {
-    let resp = await fetch("https://retarded.dev/api/v3/post/list?sort=Hot&type_=Local")
+    let resp = await fetch("https://lemmy.world/api/v3/post/list?sort=Hot&type_=Local")
     let json = await resp.json()
     return json.posts;
 }
