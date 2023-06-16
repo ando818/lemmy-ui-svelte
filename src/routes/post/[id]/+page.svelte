@@ -87,4 +87,9 @@
 		background: rgb(248, 248, 248);
 		border-radius: 8px;
 	}
+	@media (max-width: 767px) {
+        #main {
+			width:100vw;
+		}
+	}
 </style>

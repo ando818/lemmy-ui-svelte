@@ -1,7 +1,7 @@
 <script>
 	import { comment } from 'svelte/internal';
 	import { client } from '$lib/lemmyclient.js';
-	import {marked} from 'marked';
+	import { marked } from 'marked';
 	import { user } from '$lib/store.js';
 	import {
 		AddCircleOutline,
@@ -16,8 +16,8 @@
 	export let level;
 
 	let markdown;
-	
-	console.log(marked("hello"));
+
+	console.log(marked('hello'));
 
 	function collapse(tree) {
 		tree.collapsed = !tree.collapsed;
@@ -38,10 +38,9 @@
 
 	async function editComment(comment) {
 		commentInEdit = JSON.parse(JSON.stringify(comment));
-		
 	}
 	async function saveComment(comment) {
-		console.log(comment)
+		console.log(comment);
 		let resp = await fetch('/apus/comment/edit', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -50,12 +49,11 @@
 			})
 		});
 
-		comment.comment.content = commentInEdit.comment.content
+		comment.comment.content = commentInEdit.comment.content;
 
 		commentInEdit = null;
-
 	}
-	
+
 	let editCommentContent;
 
 	let commentInEdit;
@@ -79,10 +77,10 @@
 						</div>
 						{#if commentInEdit && tree.comment.comment.id == commentInEdit.comment.id}
 							<div class="comment-content-edit">
-								<textarea class="edit-textarea" bind:value={commentInEdit.comment.content}></textarea>
+								<textarea class="edit-textarea" bind:value={commentInEdit.comment.content} />
 								<div>
-									<ion-button on:click={() => saveComment(tree.comment)}>Save</ion-button> 
-									<ion-button on:click={() => commentInEdit = false}>Cancel</ion-button> 
+									<ion-button on:click={() => saveComment(tree.comment)}>Save</ion-button>
+									<ion-button on:click={() => (commentInEdit = false)}>Cancel</ion-button>
 								</div>
 							</div>
 						{:else}
@@ -98,8 +96,12 @@
 								<StarOutline size="16" class="icon" />
 
 								{#if tree.comment.creator.name == $user.username}
-								<CreateOutline size="16" class="icon" on:click={() => editComment(tree.comment)} />
-									{/if}
+									<CreateOutline
+										size="16"
+										class="icon"
+										on:click={() => editComment(tree.comment)}
+									/>
+								{/if}
 							</div>
 						{/if}
 					</div></ion-item
@@ -135,9 +137,7 @@
 		display: flex;
 	}
 
-	.comment-content {
-		font-size: 16px;
-	}
+
 	.comment-bar {
 		display: grid;
 		margin-top: 10px;
@@ -154,5 +154,16 @@
 	}
 	.edit-textarea {
 		width: 100%;
+	}
+	p {
+		font-size:10px !important
+	}
+	.comment-content p {
+			font-size:8px;
+		}
+	@media (max-width: 767px) {
+        .comment-content p {
+			font-size:8px !important
+		}
 	}
 </style>
