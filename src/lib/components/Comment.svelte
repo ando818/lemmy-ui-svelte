@@ -36,8 +36,26 @@
 	}
 
 	async function editComment(comment) {
-		commentInEdit = comment;
+		commentInEdit = JSON.parse(JSON.stringify(comment));
+		
 	}
+	async function saveComment(comment) {
+		console.log(comment)
+		let resp = await fetch('/apus/comment/edit', {
+			method: 'POST',
+			body: JSON.stringify({
+				commentId: comment.comment.id,
+				content: commentInEdit.comment.content
+			})
+		});
+
+		comment.comment.content = commentInEdit.comment.content
+
+		commentInEdit = null;
+
+	}
+	
+	let editCommentContent;
 
 	let commentInEdit;
 </script>
@@ -60,10 +78,10 @@
 						</div>
 						{#if commentInEdit && tree.comment.comment.id == commentInEdit.comment.id}
 							<div class="comment-content-edit">
-								<textarea class="edit-textarea">{tree.comment.comment.content}</textarea>
+								<textarea class="edit-textarea" bind:value={commentInEdit.comment.content}></textarea>
 								<div>
-									<ion-button>Save</ion-button> 
-									<ion-button>Cancel</ion-button> 
+									<ion-button on:click={() => saveComment(tree.comment)}>Save</ion-button> 
+									<ion-button on:click={() => commentInEdit = false}>Cancel</ion-button> 
 								</div>
 							</div>
 						{:else}
