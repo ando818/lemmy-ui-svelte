@@ -66,7 +66,7 @@
 				<ion-item>
 					<div class="comment">
 						<div class="comment-top">
-							@{tree.comment.creator.name}
+							<p class='creator'>@{tree.comment.creator.name}</p>
 							<div class="collapse">
 								{#if tree.collapsed}
 									<AddCircleOutline size="14" class="collapse" on:click={() => collapse(tree)} />
@@ -125,22 +125,21 @@
 
 	.collapse {
 		margin-left: 4px;
+		margin-top:5px;
 	}
 	.comment {
 		margin: 10px;
 		width: 100%;
 	}
 	.comment-top {
-		margin-bottom: 5px;
 		font-size: 12px;
 		color: rgb(22, 36, 224);
 		display: flex;
 	}
 
-
 	.comment-bar {
 		display: grid;
-		margin-top: 10px;
+		margin-top: 5px;
 		width: 20%;
 		grid-template-columns: auto auto auto auto auto auto;
 		margin-left: 5px;
@@ -155,15 +154,20 @@
 	.edit-textarea {
 		width: 100%;
 	}
-	p {
-		font-size:10px !important
-	}
-	.comment-content p {
-			font-size:8px;
-		}
+
+	
 	@media (max-width: 767px) {
-        .comment-content p {
-			font-size:8px !important
+		:global(p) {
+			font-size: 12px;
 		}
+
+		.creator {
+			font-size: 10px;
+		}
+
+	.collapse {
+		margin-left: 4px;
+		margin-top:0px;
+	}
 	}
 </style>
