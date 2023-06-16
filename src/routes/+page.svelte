@@ -4,9 +4,13 @@
 
 	import Post from '$lib/components/Post.svelte';
 	import { currentPost } from '$lib/store';
+	import { onMount } from 'svelte';
 
 	export let data;
 
+	onMount(() => {
+		console.log(data)
+	})
 	function goToPost(post) {
 		$currentPost = post;
 		goto(`/post/${post.post.id}`, {});

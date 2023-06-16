@@ -17,9 +17,9 @@
 <svelte:head>
 	<style>
 		.logo {
-			width: 10vw;
-			
-			margin-left: 4vw;
+			width: 50px;
+			height: 50px;
+			margin-left: 30px;
 		}
 		.link {
 			font-size: 14px;
@@ -49,39 +49,41 @@
 		.hamburger {
 			display: flex;
 			align-items: center;
-			margin-left:40%;
+			margin-left: 40%;
 		}
 		.header {
-			display:flex;
-			align-items:center;
+			display: flex;
+			align-items: center;
 			border-bottom: 1px solid gray;
-			padding-bottom:4px;
-			margin-top:4px;
+			padding-bottom: 4px;
+			margin-top: 4px;
 		}
 		.banner {
-			margin-left:30px;
-
+			margin-left: 30px;
 		}
-
 		@media (max-width: 767px) {
-        .hamburger {
-			margin-left:30vw;
+			.logo {
+				width: 10vw;
+				margin-left:4vw
+			}
+			.hamburger {
+				margin-left: 30vw;
+			}
+			h4 {
+				font-size: 18px;
+			}
 		}
-		h4 {
-			font-size:18px;
-		}
-	}
 	</style>
 </svelte:head>
 
-<div class='header'>
+<div class="header">
 	<img
 		src="https://retarded.dev/pictrs/image/c9407c0c-de4b-4b25-8e45-3b3a946bef76.png"
 		class="logo"
 		on:click={() => goToPage('/')}
 	/>
 
-	<div class='banner navbar ion-text-center'>
+	<div class="banner navbar ion-text-center">
 		<h4>Lemmy</h4>
 	</div>
 	{#if !$user}
@@ -107,7 +109,7 @@
 				{$user.username}
 			</div>
 			<OverflowMenu flipped light>
-				<OverflowMenuItem text="Profile" on:click={() =>goToPage("/profile")}  />
+				<OverflowMenuItem text="Profile" on:click={() => goToPage('/profile')} />
 				<OverflowMenuItem text="Settings" />
 				<OverflowMenuItem danger text="Logout" on:click={logout} />
 			</OverflowMenu>

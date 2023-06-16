@@ -5,7 +5,8 @@
 	import { Chatbox } from 'svelte-ionicons';
 	import { currentPost } from '$lib/store.js';
 	function parsePostType(post) {
-		if (post.post.url?.includes('.jpg')) {
+		if (post.post.url?.includes('.jpg') || 
+		post.post.url?.includes('.png') ) {
 			return 'image';
 		} else if (post.post.thumbnail_url) {
 			return 'video';
@@ -33,7 +34,7 @@
 </script>
 
 <ion-item class='item'>
-	<div style="margin-right:10px;" />
+	<div></div>
 	{#if parsePostType(post) == 'video'}
 		<ion-img src={post.post.thumbnail_url} style="width:10vw; height: 10vh; padding-right:10px" />
 	{:else if parsePostType(post) == 'image'}
