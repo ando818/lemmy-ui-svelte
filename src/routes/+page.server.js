@@ -1,17 +1,14 @@
+
+import { getClient } from "../lib/lemmyclient";
+import { set } from 'svelte/store'
+
 export const load = async ({ cookies }) => {
+    let json = await getClient("https://lemmy.world").listCommunities({})
 
-    let resp = await fetch("https://lemmy.world/api/v3/community/list")
-    let json = await resp.json()
-    console.log(json)
-    
-
-	return {
-		/**
-		 * The player's guessed words so far
-		 */
-		communities: json.communities,
+    return {
+        communities: json.communities,
         posts: await getPosts()
-	};
+    };
 };
 
 async function getPosts() {

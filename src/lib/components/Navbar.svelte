@@ -52,9 +52,10 @@
 			margin-left: 40%;
 		}
 		.header {
+			width: 80%;
+			margin:auto;
 			display: flex;
 			align-items: center;
-			border-bottom: 1px solid gray;
 			padding-bottom: 4px;
 			margin-top: 4px;
 		}
@@ -64,7 +65,7 @@
 		@media (max-width: 767px) {
 			.logo {
 				width: 10vw;
-				margin-left:4vw
+				margin-left: 4vw;
 			}
 			.hamburger {
 				margin-left: 30vw;
@@ -72,13 +73,17 @@
 			h4 {
 				font-size: 18px;
 			}
+			.header {
+				width:100%;
+			}
 		}
 	</style>
 </svelte:head>
 
 <div class="header">
+	
 	<img
-		src="https://retarded.dev/pictrs/image/c9407c0c-de4b-4b25-8e45-3b3a946bef76.png"
+		src="https://lemmy.world/pictrs/image/ff53606e-09ed-4f3e-b34d-a8d8b0398d48.jpeg?format=webp&thumbnail=96"
 		class="logo"
 		on:click={() => goToPage('/')}
 	/>

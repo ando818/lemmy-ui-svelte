@@ -1,9 +1,18 @@
 import { Login, LemmyHttp } from "lemmy-js-client";
+import { get } from 'svelte/store'
+import { instance} from '$lib/store.js'
 
-let headers = {
-    "x-real-ip": "https://https://lemmy.world",
-    "x-forwarded-for": "https://https://lemmy.world",
-}
 let baseUrl = 'https://lemmy.world';
-export let client = new LemmyHttp(baseUrl, headers);
 
+
+export let client = new LemmyHttp(baseUrl, {});
+
+let clients = {}
+
+export function getClient(host) {
+    if (!clients[host]) {
+        clients[host] = new LemmyHttp(host, {});
+    }
+
+    return clients[host]
+}

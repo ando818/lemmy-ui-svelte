@@ -3,14 +3,14 @@
 	import { goto } from '$app/navigation';
 
 	import Post from '$lib/components/Post.svelte';
-	import { currentPost } from '$lib/store';
+	import { currentPost, instance } from '$lib/store';
 	import { onMount } from 'svelte';
-
 	export let data;
 
 	onMount(() => {
-		console.log(data)
-	})
+		$instance = 'https://lemmy.world';
+	});
+
 	function goToPost(post) {
 		$currentPost = post;
 		goto(`/post/${post.post.id}`, {});
@@ -21,25 +21,22 @@
 	<title>Lemmy</title>
 </svelte:head>
 
-<div class='main'>
-	<div class='posts'>
+
+<div class="main">
+	<div class="posts">
 		<ion-list>
 			<ion-list-header>Posts</ion-list-header>
-
 			{#each data.posts as post}
 				<Post bind:post />
 			{/each}
 		</ion-list>
-
 	</div>
-	<div class='side hidden-mobile'>
-
+	<div class="side hidden-mobile">
 		<div>
-			<ion-searchbar placeholder="Search"></ion-searchbar>
+			<ion-searchbar placeholder="Search" />
 
 			<ion-button>Create Post</ion-button>
-			<ion-button >Create Community</ion-button>
-
+			<ion-button>Create Community</ion-button>
 		</div>
 	</div>
 </div>
@@ -51,20 +48,21 @@
 	.posts {
 		position: relative;
 		width: 80%;
+		margin:auto;
 	}
 	@media (max-width: 767px) {
-        .hidden-mobile {
-          display: none;
-        }
+		.hidden-mobile {
+			display: none;
+		}
 		.posts {
-			width:100%;
+			width: 100%;
 		}
 	}
 	.side {
 		position: absolute;
-		top:0;
-		right:0;
+		top: 0;
+		right: 0;
 		height: 100vh;
-		width:20%
+		width: 20%;
 	}
 </style>

@@ -35,3 +35,11 @@ user.subscribe((u) => {
 	}
 });
 
+export const instance = writable(
+	getSafetyParsedJsonFromLocalStorage('instance', false)
+);
+instance.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('instance', JSON.stringify(u));
+	}
+});

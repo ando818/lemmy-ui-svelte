@@ -47,7 +47,7 @@
 
 <div id="container">
 	<div id="main">
-		<Post bind:post={$currentPost} />
+		<Post bind:post={$currentPost} main={true}/>
 
 		<div id="post">
 			<ion-textarea
@@ -84,12 +84,16 @@
 	#post {
 		margin-top: 5px;
 		border: 1px solid gray;
-		background: rgb(248, 248, 248);
+		background: #2f2c2c;
 		border-radius: 8px;
+		
 	}
 	@media (max-width: 767px) {
         #main {
 			width:100vw;
+		}
+		#post {
+			margin-left:3vw;
 		}
 	}
 </style>

@@ -4,6 +4,9 @@
 
 	import { Chatbox } from 'svelte-ionicons';
 	import { currentPost } from '$lib/store.js';
+
+	export let main = true;
+
 	function parsePostType(post) {
 		if (post.post.url?.includes('.jpg') || post.post.url?.includes('.png')) {
 			return 'image';
@@ -22,7 +25,6 @@
 	}
 
 	function goToPost(post) {
-		console.log('yo');
 		$currentPost = post;
 		goto(`/post/${post.post.id}`, {});
 	}
@@ -32,23 +34,28 @@
 	}
 </script>
 
-<ion-item class="item">
-	<div class='image-container'>
-	{#if parsePostType(post) == 'video'}
-		<ion-img src={post.post.thumbnail_url} style="width:100%;  object-fit: cover; padding-right:10px" />
-	{:else if parsePostType(post) == 'image'}
-		<a href={post.post.url}
-			><ion-img src={post.post.url} style="width:100%; object-fit: cover; padding-right:10px" /></a
-		>
-	{:else}
-		<div
-			style="width: 100%; height: 10vh; display:flex; align-items: center; padding-right: 10px; justify-content: center"
-		>
-			<Chatbox size="25" />
-		</div>
-	{/if}
+<div class="item">
+	<div class={'image-container' + (main ? ' main' : '')}>
+		{#if parsePostType(post) == 'video'}
+			<ion-img
+				src={post.post.thumbnail_url}
+				style="width:100%;  height: 10vh; object-fit: cover; border-radius: 4px"
+			/>
+		{:else if parsePostType(post) == 'image'}
+			<a href={post.post.url}
+				><ion-img
+					src={post.post.url}
+					style="width:100%; height: 10vh; object-fit: cover; border-radius: 4px"
+				/></a
+			>
+		{:else}
+			<div
+				style="width: 100%; height: 6vh; display:flex; align-items: center; justify-content: center; background: #353232; border-radius: 4px"
+			>
+				<Chatbox size="25" />
+			</div>
+		{/if}
 	</div>
-	<ion-label>
 		<div class="post mobile">
 			<div
 				on:click={() => {
@@ -66,17 +73,38 @@
 				<a><h3>{post.counts.comments} comments</h3></a>
 			</div>
 		</div>
-	</ion-label>
-</ion-item>
+</div>
 
 <style>
+
+.post {
+	margin-left:10px;
+}
+	.post h2{
+		font-size:18px;
+	}
+	.post h3 {
+		font-size:12px;
+
+	}
+	.post h4{
+		font-size:12px;
+
+	}
 	.item {
 		height: fit-content;
+		display: flex;
+		margin-bottom:10px;
+	}
+	.item img {
+		width: 200px;
+		height:200px;
 	}
 
 	.image-container {
-		width:100px;
-	
+		width: 8vw;
+		height: 10vh;
+
 	}
 
 	.post-title {
@@ -85,7 +113,8 @@
 	}
 	@media (max-width: 767px) {
 		.image-container {
-			width:20vw;
+			width: 20vw;
+			height: fit-content;
 		}
 		.mobile h2 {
 			font-size: 14px;
@@ -95,6 +124,10 @@
 		}
 		.mobile h4 {
 			font-size: 10px;
+		}
+		.main {
+			margin-top: 4px;
+			width: 30vw;
 		}
 	}
 </style>
