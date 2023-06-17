@@ -3,11 +3,13 @@ import { getClient } from "../lib/lemmyclient";
 import { set } from 'svelte/store'
 
 export const load = async ({ cookies }) => {
-    let json = await getClient("https://lemmy.world").listCommunities({})
+    let client =  getClient("https://lemmy.world");
+    let json = await client.listCommunities({})
 
     return {
         communities: json.communities,
-        posts: await getPosts()
+        posts: await getPosts(),
+        site: await getSite(client)
     };
 };
 
@@ -16,3 +18,9 @@ async function getPosts() {
     let json = await resp.json()
     return json.posts;
 }
+async function getSite(client) {
+    let json = await client.getSite({})
+    console.log(json)
+    return json;
+}
+

@@ -66,6 +66,7 @@
 			>
 		{:else}
 			<div
+			class='mobile-chat'
 				style="width: 100%; height: 6vh; display:flex; align-items: center; justify-content: center; background: #353232; border-radius: 4px"
 			>
 				<Chatbox size="25" />
@@ -136,7 +137,7 @@
 	}
 	@media (max-width: 767px) {
 		.image-container {
-			width: 20vw;
+			width: 10vw;
 			height: fit-content;
 		}
 		.mobile h2 {
