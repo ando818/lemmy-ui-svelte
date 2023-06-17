@@ -1,10 +1,17 @@
 <script>
 	export let post;
 	import { goto } from '$app/navigation';
-
 	import { Chatbox } from 'svelte-ionicons';
 	import { currentPost } from '$lib/store.js';
-
+	import {
+		AddCircleOutline,
+		RemoveCircleOutline,
+		LinkOutline,
+		ArrowUpOutline,
+		ArrowDownOutline,
+		StarOutline,
+		CreateOutline
+	} from 'svelte-ionicons';
 	export let main = true;
 
 	function parsePostType(post) {
@@ -35,6 +42,15 @@
 </script>
 
 <div class="item">
+	<div class='votes'>
+		<div>
+		<ArrowUpOutline size="20" class="icon" on:click={() => likeComment(tree.comment)} />
+		</div>
+		<div style='text-align:center'> {post.counts.score}</div>
+		<div>
+			<ArrowDownOutline size="20" class="icon" />
+		</div>
+	</div>
 	<div class={'image-container' + (main ? ' main' : '')}>
 		{#if parsePostType(post) == 'video'}
 			<ion-img
@@ -79,6 +95,13 @@
 
 .post {
 	margin-left:10px;
+}
+
+.votes {
+	color: gray;
+	margin-top:10px;
+	margin-right: 20px;
+	margin-left: 10px;
 }
 	.post h2{
 		font-size:18px;
