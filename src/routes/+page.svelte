@@ -10,11 +10,6 @@
 	onMount(() => {
 		$instance = 'https://lemmy.world';
 	});
-
-	function goToPost(post) {
-		$currentPost = post;
-		goto(`/post/${post.post.id}`, {});
-	}
 </script>
 
 <svelte:head>
