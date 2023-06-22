@@ -2,7 +2,9 @@
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/store';
 	import { OverflowMenu, OverflowMenuItem } from 'carbon-components-svelte';
+	import { onMount } from 'svelte';
 	import { MenuOutline } from 'svelte-ionicons';
+	import { MultiSelect } from 'carbon-components-svelte';
 
 	function goToPage(page) {
 		goto(page, {});
@@ -12,6 +14,8 @@
 		$user = null;
 	}
 	let expanded;
+
+	onMount(() => {});
 </script>
 
 <svelte:head>
@@ -53,7 +57,7 @@
 		}
 		.header {
 			width: 80%;
-			margin:auto;
+			margin: auto;
 			display: flex;
 			align-items: center;
 			padding-bottom: 4px;
@@ -74,14 +78,13 @@
 				font-size: 18px;
 			}
 			.header {
-				width:100%;
+				width: 100%;
 			}
 		}
 	</style>
 </svelte:head>
 
 <div class="header">
-	
 	<img
 		src="https://lemmy.world/pictrs/image/ff53606e-09ed-4f3e-b34d-a8d8b0398d48.jpeg?format=webp&thumbnail=96"
 		class="logo"
@@ -91,7 +94,27 @@
 	<div class="banner navbar ion-text-center">
 		<h4>Lemmy</h4>
 	</div>
+
+	<div />
+	<MultiSelect
+		light={false}
+		label="Instances"
+		items={[
+			{ id: '0', text: 'lemmy.world' },
+			{ id: '1', text: 'beehaw.org' },
+			{ id: '2', text: 'lemmy.ml' }
+		]}
+	/>
 	{#if !$user}
+		<ion-button
+			fill="clear"
+			routerLinkActive="active-link"
+			class="link"
+			on:click={() => goToPage('/communities')}
+		>
+			Communities
+		</ion-button>
+
 		<ion-button
 			fill="clear"
 			routerLinkActive="active-link"

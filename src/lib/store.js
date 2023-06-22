@@ -43,3 +43,30 @@ instance.subscribe((u) => {
 		localStorage.setItem('instance', JSON.stringify(u));
 	}
 });
+
+export const communities = writable(
+	getSafetyParsedJsonFromLocalStorage('communities', [])
+);
+communities.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('communities', JSON.stringify(u));
+	}
+});
+
+export const sortFilter = writable(
+	getSafetyParsedJsonFromLocalStorage('sortFilter', [])
+);
+sortFilter.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('sortFilter', JSON.stringify(u));
+	}
+});
+
+export const isLoading = writable(
+	getSafetyParsedJsonFromLocalStorage('isLoading', false)
+);
+isLoading.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('isLoading', JSON.stringify(u));
+	}
+});
