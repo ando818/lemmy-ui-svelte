@@ -4,25 +4,40 @@
 
 	import Post from '$lib/components/Post.svelte';
 	import PostList from '$lib/components/PostList.svelte';
-	import { currentPost, instance, communities, isLoading , sortFilter} from '$lib/store';
+	import { isLoading, site, currentPost, instance, communities, isLoading, sortFilter } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { marked } from 'marked';
 	export let data;
 
 	onMount(() => {
-		$instance = 'https://lemmy.world';
-		$sortFilter = 'Hot'
-
+		$instance = 'lemmy.world';
 	});
 
 	let posts = [];
 
-	let promise = getPosts();
+	let promise = init();
 	onMount(async () => {
-		$communities = data.communities.communities;
+		
 	});
 
+	async function init() {
+		$isLoading = true;
+		await getSite();
+		$isLoading = false;
+	}
+
+	async function getSite() {
+		let resp = await fetch(`/apus/site?instance=${$instance}`);
+		data.site = await resp.json();
+	}
+
+	async function getCommunities() {
+		let resp = await fetch(`/apus/communities?instance=${$instance}`);
+		data.communities = await resp.json();
+	}
+
 	async function getPosts() {}
+
 </script>
 
 <svelte:head>
@@ -56,8 +71,8 @@
 
 <style>
 	.main {
-		margin-top: 20px;
 		position: relative;
+		margin-top: 5px;
 	}
 	.description-header {
 		margin-bottom: 10px;
@@ -78,10 +93,11 @@
 		border-radius: 4px;
 		height: fit-content;
 	}
-	@media (max-width: 767px) {
-		.hidden-mobile {
+	.hidden-mobile {
 			display: none;
 		}
+	@media (max-width: 767px) {
+
 		.posts {
 			width: 100%;
 		}

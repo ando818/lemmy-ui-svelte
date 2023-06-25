@@ -7,11 +7,7 @@ export const load = async ({ cookies }) => {
 
     let client = getClient("https://lemmy.world")
 
-    let site = await getSite(client);
-    let communities = await getCommunities(client);
     return {
-        site,
-        communities
     }
 };
 
@@ -27,6 +23,8 @@ async function getSite(client) {
 }
 
 async function getCommunities(client) {
-    let json = await client.listCommunities({})
+    let json = await client.listCommunities({
+        sort: "TopAll"
+    })
     return json;
 }

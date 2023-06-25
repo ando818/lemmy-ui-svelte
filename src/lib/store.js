@@ -70,3 +70,95 @@ isLoading.subscribe((u) => {
 		localStorage.setItem('isLoading', JSON.stringify(u));
 	}
 });
+
+
+export const backdropVisible = writable(
+	getSafetyParsedJsonFromLocalStorage('backdropVisible', false)
+);
+backdropVisible.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('backdropVisible', JSON.stringify(u));
+	}
+});
+export const backdropImage = writable(
+	getSafetyParsedJsonFromLocalStorage('backdropImage', "")
+);
+isLoading.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('backdropImage', JSON.stringify(u));
+	}
+});
+
+export const routeStack = writable(
+	getSafetyParsedJsonFromLocalStorage('routeStack', [])
+);
+routeStack.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('routeStack', JSON.stringify(u));
+	}
+});
+
+export const instances = writable(
+	getSafetyParsedJsonFromLocalStorage('instances', [])
+);
+instances.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('instances', JSON.stringify(u));
+	}
+});
+
+
+export const currentCommunity = writable(
+	getSafetyParsedJsonFromLocalStorage('currentCommunity', [])
+);
+currentCommunity.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('currentCommunity', JSON.stringify(u));
+	}
+});
+
+export const currentInstance = writable(
+	getSafetyParsedJsonFromLocalStorage('currentInstance', [])
+);
+currentInstance.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('currentInstance', JSON.stringify(u));
+	}
+});
+
+export const site = writable(
+	getSafetyParsedJsonFromLocalStorage('site', [])
+);
+site.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('site', JSON.stringify(u));
+	}
+});
+
+export const replyModalOpen = writable(
+	getSafetyParsedJsonFromLocalStorage('replyModalOpen', false)
+);
+replyModalOpen.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('replyModalOpen', JSON.stringify(u));
+	}
+});
+
+export const commentToReply = writable(
+	getSafetyParsedJsonFromLocalStorage('commentToReply', false)
+);
+commentToReply.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('commentToReply', JSON.stringify(u));
+	}
+});
+
+
+export const lastPosts = writable(
+	getSafetyParsedJsonFromLocalStorage('lastPosts', false)
+);
+lastPosts.subscribe((u) => {
+	if (browser) {
+		localStorage.setItem('lastPosts', JSON.stringify(u));
+	}
+});

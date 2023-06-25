@@ -2,17 +2,10 @@
 import { get } from "svelte/store";
 import { user } from "$lib/store.js";
 
-export const load = async ({ cookies }) => {
+export const load = async ({ cookies, params }) => {
 
-    console.log("faf",get(user))
-    let jwt = cookies.get('user')
-    console.log(jwt)
-    let resp = await fetch(`https://retarded.dev/api/v3/user?username=${jwt}`)
-
-    let json = await resp.json();
-    console.log(json)
 	return {
-		person: json
+		username: params.name
 	};
 };
 

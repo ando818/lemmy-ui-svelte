@@ -2,9 +2,11 @@
 	import { setupIonicBase } from 'ionic-svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Navbar2 from '$lib/components/Navbar2.svelte';
+	import ImageBackdrop from '$lib/components/ImageBackdrop.svelte';
 	import { IonPage } from 'ionic-svelte';
 	import 'carbon-components-svelte/css/white.css';
 	import { isLoading} from "$lib/store.js"
+	import {goto} from '$app/navigation'
 	/* Call Ionic's setup routine */
 	setupIonicBase();
 
@@ -57,9 +59,11 @@
 		ArrowDownOutline,
 		StarOutline,
 		CreateOutline,
+		HomeOutline,
 		PersonCircleOutline,
 		MailOutline,
 		SearchOutline,
+		ServerOutline,
 		SettingsOutline
 	} from 'svelte-ionicons';
 </script>
@@ -70,13 +74,15 @@
 			is-open={$isLoading}
 			trigger="open-loading"
 			message="Loading..."
-			duration="3000"
+			duration="10000"
 			spinner="circles"
 		/>
 		<Navbar2 path={data.pathname} />
-		<ion-content>
+
+		<ion-content scroll-y={data.pathname =='/profile' ? "false": "true"}>
 			{#key data.pathname}
-				<div in:fade={{ duration: 300, delay: 400 }} out:fade={{ duration: 300 }}>
+				<div in:fade={{ duration: 300, delay: 400 }} out:fade={{ duration: 300 }}
+				>
 					<slot />
 				</div>
 			{/key}
@@ -84,20 +90,30 @@
 		<ion-toolbar>
 			<ion-tabs>
 				<!-- Tab views -->
-				<ion-tab tab="account" />
+				<ion-tab tab="home" />
 				<ion-tab tab="contact" />
+				<ion-tab tab="account" />
+				<ion-tab tab="mail" />
+				<ion-tab tab="instances" />
 				<ion-tab tab="settings" />
 
 				<!-- Tab bar -->
 				<ion-tab-bar slot="bottom">
-					<ion-tab-button tab="account">
+
+					<ion-tab-button tab="home" href='/' on:click={() => goto("/")}>
+						<HomeOutline/>
+					</ion-tab-button>
+					<ion-tab-button tab="account" href='/profile' on:click={() => goto("/profile")}>
 						<PersonCircleOutline />
 					</ion-tab-button>
 					<ion-tab-button tab="contact">
 						<MailOutline />
 					</ion-tab-button>
-					<ion-tab-button tab="settings">
+					<ion-tab-button tab="mail">
 						<SearchOutline />
+					</ion-tab-button>
+					<ion-tab-button tab="instances" on:click={() => goto("/instances/settings")}>
+						<ServerOutline />
 					</ion-tab-button>
 					<ion-tab-button tab="settings">
 						<SettingsOutline />

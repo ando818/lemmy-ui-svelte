@@ -1,8 +1,10 @@
 <script>
 	export let post;
 	import { goto } from '$app/navigation';
+	import { go} from '$lib/utils.js'
 	import { Chatbox } from 'svelte-ionicons';
 	import { currentPost } from '$lib/store.js';
+	import ImageBackdrop from '$lib/components/ImageBackdrop.svelte'
 	import {
 		AddCircleOutline,
 		RemoveCircleOutline,
@@ -43,32 +45,25 @@
 
 	function goToPost(post) {
 		$currentPost = post;
-		goto(`/post/${post.post.id}`, {});
+		go(`/post/${post.post.id}`)
 	}
 
 	function goTo(url) {
-		goto(url, {});
+		go(url)
 	}
 
 	let backdropVisible = false;
+	let backdropImage;
 	let clickedPost = null;
 
 	function enableImage(post) {
+		console.log('uhuhuhuh')
 		backdropVisible = true;
+		backdropImage = parsePostImg(post);
 		clickedPost = post;
 	}
 </script>
-
-<ion-backdrop
-	tappable
-	class={backdropVisible ? '' : 'hidden'}
-	on:ionBackdropTap={() => (backdropVisible = false)}
-/>
-{#if backdropVisible}
-	<div id="box" class={backdropVisible ? '' : 'hidden'}>
-		<ion-img style='position: fixed; object-fit: cover; width: 90vw; height: 50vh;' src={parsePostImg(clickedPost)} />
-	</div>
-{/if}
+<ImageBackdrop bind:backdropVisible bind:backdropImage/>
 
 <div class="item">
 	<div class="votes">
@@ -118,29 +113,11 @@
 </div>
 
 <style>
-	ion-backdrop {
-		opacity: 0.2;
-		background: var(--ion-color-primary);
-	}
 
-	.hidden {
+.hidden {
 		display: none;
 	}
 
-	#box {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translateY(-50%) translateX(-50%);
-		z-index: 100;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: var(--ion-background-color, #fff);
-		width: 90%;
-		height: 200px;
-		border-radius: 10px;
-	}
 	.post {
 		margin-left: 10px;
 		margin-top: auto;

@@ -37,9 +37,7 @@ export async function GET({ cookies, request, url }) {
     let sortFilter = url.searchParams.get("sort_filter")
 
     return json({
-        communities: resp.communities,
         posts: await getPosts(client, community,sortFilter),
-        site: await getSite(client)
     })
 }
 

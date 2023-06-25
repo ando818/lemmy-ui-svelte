@@ -1,68 +1,52 @@
 <script>
 	import Post from '$lib/components/Post.svelte';
-	import { currentPost } from '$lib/store';
+	import { currentPost , replyModalOpen} from '$lib/store';
 	import { IonPage } from 'ionic-svelte';
 	import { onMount } from 'svelte';
 	import Comment from '$lib/components/Comment.svelte';
+	import ImageBackdrop from '$lib/components/ImageBackdrop.svelte';
 	export let data;
 
+	import { marked } from 'marked';
 
 	let textArea;
 
-	let commentTree = {
-		id: 0,
-		children: []
-	};
-
-	function convertToTree(comments) {
-		let commentsSorted = comments.sort((d) => d.comment.path).reverse();
-		for (let i = 0; i < commentsSorted.length; i++) {
-			let comment = data.comments[i];
-			let path = comment.comment.path;
-			let pathSplit = path.split('.');
-			let root = commentTree;
-
-			for (let j = 1; j < pathSplit.length; j++) {
-				let id = pathSplit[j];
-				let index = root.children.findIndex((c) => c.id == id);
-				if (index == -1) {
-					root.children.push({
-						id: comment.comment.id,
-						comment,
-						children: []
-					});
-				} else {
-					root = root.children[index];
-				}
-			}
-		}
-	}
 	onMount(() => {
-		textArea.innerHTML = $currentPost.post.body;
-		convertToTree(data.comments);
-		commentTree = commentTree;
-		console.log(commentTree);
+		$replyModalOpen = false;
+		let images = document.getElementsByTagName('img');
+		console.log('images', images);
+		for (let i = 0; i < images.length; i++) {
+			let img = images.item(i);
+			img.addEventListener('click', function (e) {
+				console.log(img.src)
+				backdropImage = img.src
+				backdropVisible  =true;
+			});
+		}
 	});
+
+	let backdropVisible = false;
+	let backdropImage;
+	console.log("post",$currentPost, data.comments)
 </script>
 
+<ImageBackdrop bind:backdropVisible bind:backdropImage></ImageBackdrop>
 <div id="container">
 	<div id="main">
-		<Post bind:post={$currentPost} main={true}/>
+		<Post bind:post={$currentPost} main={true} />
 
 		<div id="post">
-			<ion-textarea
-				bind:this={textArea}
-				class="post-text"
-				readonly="true"
-				disabled="true"
-			/>
+			{#if $currentPost.post.body}
+			<div class="post-text">
+				{@html marked($currentPost.post.body)}
+			</div>
+			{/if}
 		</div>
 		<div id="comments">
-			<Comment bind:commentTree level={0} />
+			<Comment bind:comments={data.comments} level={0} />
 		</div>
 	</div>
 
-	<div id="right-bar" />
 </div>
 
 <style>
@@ -77,8 +61,8 @@
 		width: 20%;
 	}
 	.post-text {
-		padding: 10px;
-		opacity:1
+		padding: 4px;
+		opacity: 1;
 	}
 
 	#post {
@@ -86,14 +70,13 @@
 		border: 1px solid gray;
 		background: #2f2c2c;
 		border-radius: 8px;
-		
 	}
 	@media (max-width: 767px) {
-        #main {
-			width:100vw;
+		#main {
+			width: 100vw;
 		}
 		#post {
-			margin-left:3vw;
+			margin-left: 3vw;
 		}
 	}
 </style>

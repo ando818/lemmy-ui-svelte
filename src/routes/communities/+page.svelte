@@ -8,8 +8,6 @@
 	import { marked } from 'marked';
 	export let data;
 
-	let multiCommunities = [];
-
 	let map = {};
 	function alphabetize() {
 		for (let i = 0; i < communities.length; i++) {}
@@ -34,8 +32,8 @@
 </ion-item>
 
 	{#each $communities as community}
-	<ion-item>
-		<a href="/c/{community.community.name}">{community.community.name}</a>
+	<ion-item on:click={() => goto(`/c/${community.community.name}`)}>
+		{community.community.name}
 	</ion-item>
 	{/each}
 </ion-list>

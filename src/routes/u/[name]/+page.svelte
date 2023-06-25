@@ -5,15 +5,18 @@
 	import Comment from '$lib/components/Comment.svelte';
 	import Post from '$lib/components/Post.svelte';
 	import PostList from '$lib/components/PostList.svelte';
-	import { currentPost, user, currentCommunity } from '$lib/store';
+	import { currentPost, user } from '$lib/store';
 	import { onMount } from 'svelte';
 
 	export let data;
 
-	console.log(data);
-	let posts = [];
+	async function getPersonalDetails() {
+		let resp = await fetch(`/apus/user?username=${data.username}`)
+		console.log(resp);
+		return await resp.json()
+	}
 	onMount(async () => {
-		$currentCommunity = data.community
+		let details = getPersonalDetails();
 	});
 </script>
 
@@ -30,6 +33,5 @@
 
 <div class="posts">
 	<ion-list>
-		<PostList bind:posts={data.posts} bind:community={data.community} refresh={data.refresh}/>
 	</ion-list>
 </div>
