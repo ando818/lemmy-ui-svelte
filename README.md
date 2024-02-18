@@ -1,6 +1,5 @@
 This is a rewrite of the Lemmy UI in SvelteKit to address the number of existing issues. Contains the capacitor framework allowing a single codebase to triple as a Android and iOS native apps. This is in active development and has a lot of mess to clean up.
 
-Preview is available at https://createlab.io
 
 ## Developing
 
